@@ -1,0 +1,18 @@
+<div class="row-fluid">
+  <div class="span6">
+    <img src="{{hosted_image}}"/>
+  </div>
+  <div class="span6">
+    <cml:radios name="pneumonia_present" label="Are there any pneumonia related anomalies in this image?" validates="required">
+      <cml:radio value="yes" label="Yes, seems like there is pneumonia"/>
+      <cml:radio value="no" label="No, it looks healthy"/>
+      <cml:radio value="unknown" label="Unknown, I am not sure"/>
+    </cml:radios>
+    <cml:text name="unknown_reason" label="Please explain why it was impossible to determine whether pneumonia is present or not." validates="required" only-if="pneumonia_present:[unknown]" single="true"/>
+    <cml:select label="How confident are you:" validates="required" only-if="pneumonia_present:[yes]||pneumonia_present:[no]">
+      <cml:option value="2" label="Very Confident"/>
+      <cml:option value="1" label="Neutral"/>
+      <cml:option value="0" label="Low Confidence"/>
+    </cml:select>
+  </div>
+</div>
